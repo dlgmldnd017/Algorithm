@@ -1,0 +1,64 @@
+package Dynamic_Programing_1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class NUMB3RS_1 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringBuilder sb = new StringBuilder();
+	
+	private static int N, D, P, T;
+	private static int[] Q;
+	private static int[][] A;
+	
+	private static int[][] cache;
+	
+	public static void main(String[] args) throws IOException {
+		StringTokenizer st;
+		int C = Integer.parseInt(sc.readLine());
+		
+		for(int i=0; i<C; i++) {
+			cache = new int[101][101];
+			
+			st = new StringTokenizer(sc.readLine());
+			N = Integer.parseInt(st.nextToken());
+			D = Integer.parseInt(st.nextToken());
+			P = Integer.parseInt(st.nextToken());
+			System.out.println("hello");
+			
+			for(int y=0; y<N; y++) {
+				st = new StringTokenizer(sc.readLine());
+				for(int x=0; x<N; x++) {
+					A[y][x] = Integer.parseInt(st.nextToken());
+				}
+			}
+			
+			T = Integer.parseInt(sc.readLine());
+			Q = new int[T];
+			
+			st = new StringTokenizer(sc.readLine());
+			for(int y=0; y<T; y++) {
+				Q[y] = Integer.parseInt(st.nextToken());
+			}
+			
+			for(int y=0; y<T; y++) {
+				sb.append(solve(new ArrayList<>(), y));
+			}
+			sb.append("\n");
+		}
+		System.out.println(sb);
+	}
+	
+	private static double solve(ArrayList<Integer> path, int i) {
+		if(path.size()==D+1) {
+			if(path.get(path.size())!=Q[i]) return 0.0;
+		}
+		
+		double ret=0;
+		
+		return ret;
+	}
+}

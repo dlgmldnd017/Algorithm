@@ -1,0 +1,60 @@
+package ALL;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static int C, N, D, P, T, Q;
+    public static int adj[][] = new int[50][50];        //adj : 각 마을의 연결 여부
+    public static int deg[] = new int[50];              //deg : 각 마을에 연결된 마을 갯수
+    public static double dp[][] = new double[50][100];  //dp[here][days] : here 위치에 days 일 뒤에 있을 때 마지막에 Q에 있을 확률
+
+    public static void initDeg() {
+        for (int i = 0; i < N; i++)
+            deg[i] = 0;
+    }
+
+    public static void initDp() {
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < D; j++)
+                dp[i][j] = -1.0;
+    }
+
+    public static double solve(int here, int days) {
+        //기저 조건 : 마지막 날일 때 
+        if (days == D) {
+            if (here == Q) return 1;
+            else return 0;
+        }
+        if (dp[here][days] != -1.0) return dp[here][days];
+        double result = 0.0;
+        for (int i = 0; i < N; i++) {
+            if (adj[here][i] == 0) continue;
+            result += solve(i, days + 1) / deg[here];
+        }
+        dp[here][days] = result;
+        return result;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        C = sc.nextInt();
+        for (int c = 0; c < C; c++) {
+            N = sc.nextInt(); D = sc.nextInt(); P = sc.nextInt();
+            initDeg();
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    adj[i][j] = sc.nextInt();
+                    if (adj[i][j] == 1) deg[i]++;
+                }
+            }
+            T = sc.nextInt();
+            for (int t = 0; t < T; t++) {
+                Q = sc.nextInt();
+                initDp();
+                System.out.println(solve(P, 0));
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+package DivideConquer;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Fence2 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringTokenizer st ;
+	private static StringBuilder builder = new StringBuilder();
+	
+	public static void main(String[] args) {
+int c = Integer.parseInt(sc.readLine());
+		
+		for(int i=0; i<c; i++) {
+			int N = Integer.parseInt(sc.readLine());			
+			int[] h = new int[N];
+			st = new StringTokenizer(sc.readLine());
+			
+			for(int j=0; j<N; j++) {
+				h[j] = Integer.parseInt(st.nextToken());
+			}
+			builder.append(bruteForce(h) + "\n");
+		}
+
+	}
+
+}

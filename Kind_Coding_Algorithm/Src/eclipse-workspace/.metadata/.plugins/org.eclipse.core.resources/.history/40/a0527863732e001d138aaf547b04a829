@@ -1,0 +1,43 @@
+package DivideConquer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class FENCE1 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringTokenizer st ;
+	private static StringBuilder builder = new StringBuilder();
+	
+	public static void main(String[] args) throws IOException {
+		int c = Integer.parseInt(sc.readLine());
+		
+		for(int i=0; i<c; i++) {
+			int N = Integer.parseInt(sc.readLine());			
+			int[] h = new int[N];
+			st = new StringTokenizer(sc.readLine());
+			
+			for(int j=0; j<N; j++) {
+				h[j] = Integer.parseInt(st.nextToken());
+			}
+			builder.append(bruteForce(h) + "\n");
+		}
+		System.out.println(builder);
+	}
+	
+	private static int bruteForce(int[] h) {
+		int ret=0;
+		int N = h.length;
+		
+		for(int left=0; left<N; left++) {
+			int minH = h[left];
+			
+			for(int right=left; right<N; right++) {
+				minH = Math.min(minH, h[right]);
+				ret = Math.max(ret, (right-left+1)*minH);
+			}
+		}
+		return ret;
+	}
+}

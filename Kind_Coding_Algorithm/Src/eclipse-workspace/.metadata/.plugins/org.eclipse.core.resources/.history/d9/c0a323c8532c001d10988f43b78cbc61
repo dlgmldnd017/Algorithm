@@ -1,0 +1,55 @@
+package DivideConquer;
+
+public class MergeSort {
+	private static int[] src = {38, 27, 43, 9, 3, 82, 19};
+	private static int[] tmp = new int[src.length];
+	
+	public static void main(String[] args) {
+		System.out.print("정렬 전: ");
+		printArray(src);
+		
+		mergeSort(0, src.length-1);
+		
+		System.out.print("정렬 후: ");
+		printArray(src);
+	}
+
+	public static void mergeSort(int start, int end) {
+		
+		// 원소가 더이상 쪼개지지 않는 하나의 원소로
+		// 존재할 때까지 재귀 호출
+		if (start<end) {
+			int mid = (start+end) / 2;
+	        
+			// 맨 왼쪽에서 중앙까지 분리
+	        mergeSort(start, mid);
+	        
+	        // 중앙에서 맨 오른쪽까지 분리
+	        mergeSort(mid+1, end);
+	        
+	        int p = start;
+	        int q = mid + 1;
+	        int idx = p;
+	        
+	        // 나눠진 두 부분을 비교하여 정렬한다. 
+	        while (p<=mid || q<=end) {
+	            if (q>end || (p<=mid && src[p]<src[q])) {
+	                tmp[idx++] = src[p++];
+	            } else {
+	                tmp[idx++] = src[q++];
+	            }
+	        }
+	        
+	        for (int i=start;i<=end;i++) {
+	            src[i]=tmp[i];
+	        }
+		}
+    }
+	
+	private static void printArray(int[] A) {
+		for(int i:A) {
+			System.out.print(i+" ");
+		}
+		System.out.println();
+	}
+}

@@ -1,0 +1,34 @@
+package DivideConquer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Fence2 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringTokenizer st ;
+	private static StringBuilder builder = new StringBuilder();
+	private static int[] h;
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		int c = Integer.parseInt(sc.readLine());
+		
+		for(int i=0; i<c; i++) {
+			int N = Integer.parseInt(sc.readLine());			
+			h = new int[N];
+			st = new StringTokenizer(sc.readLine());
+			
+			for(int j=0; j<N; j++) {
+				h[j] = Integer.parseInt(st.nextToken());
+			}
+			builder.append(solve(0, N-1) + "\n");
+		}
+	}
+	
+	private static int solve(int left, int right) {
+		int ret = 0;
+		
+		return ret;
+	}
+}

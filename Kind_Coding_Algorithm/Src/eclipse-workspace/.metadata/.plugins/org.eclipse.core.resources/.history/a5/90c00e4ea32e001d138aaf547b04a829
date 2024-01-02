@@ -1,0 +1,44 @@
+package DivideConquer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Fence2 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringTokenizer st ;
+	private static StringBuilder builder = new StringBuilder();
+	private static int[] h;
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		int c = Integer.parseInt(sc.readLine());
+		
+		for(int i=0; i<c; i++) {
+			int N = Integer.parseInt(sc.readLine());			
+			h = new int[N];
+			st = new StringTokenizer(sc.readLine());
+			
+			for(int j=0; j<N; j++) {
+				h[j] = Integer.parseInt(st.nextToken());
+			}
+			builder.append(solve(0, N-1) + "\n");
+		}
+	}
+	
+	private static int solve(int left, int right) {
+		// 기저사례: 판자가 하나일 경우 그대로 값 리턴
+		if(left == right) return h[left];
+		
+		// 주어진 원소를 중간으로 나누고
+		// 초기에 중간을 기준으로 왼쪽과 오른쪽으로 계속 분할
+		int mid = (left+right) / 2;
+		int ret = Math.max(solve(left, mid), solve(mid+1,right));
+		
+		// 중간을 기준으로 양쪽에 걸쳐서 존재하는
+		// 직사각형을 위해 분할
+		int lo=mid, hi=mid+1;
+		int height = Math.min(h[lo], h[hi]);
+		return ret;
+	}
+}

@@ -1,0 +1,17 @@
+package DivideConquer;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Fence2 {
+	private static BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+	private static StringTokenizer st ;
+	private static StringBuilder builder = new StringBuilder();
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
